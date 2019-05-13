@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>EpubReader</title>
+
+       <link rel="stylesheet" href="../css/base/reset.css">
+    <link rel="stylesheet" href="../css/modules/common.css">
+    <link rel="stylesheet" href="../css/modules/button.css">
+    <link rel="stylesheet" href="../css/modules/color.css">
+    
+    
+    
+    <link rel="stylesheet" href="../css/pages/index.css">
+</head>
+
+<body>
+
+<header class="shelf-header">
+    <nav class="navbar">
+        <div class="container title-container">
+            <front class="title">EpubReader</front>
+
+            <div class="right-button">
+                <p class="button getLocal" id="getLocal">
+                <span class="btn-icon">
+                <svg class="getLocal-icon" viewBox="0 0 24 24" ><path d="M0 0h24v24H0z" fill="none"></path><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path></svg>
+                </span>
+                <span class="btn-text">从本地添加</span>
+
+                <input type="file" class="inputFile" accept="application/epub+zip" id="add-book">
+                </p>
+            </div>
+             <div class="right-button">
+                <p class="button getCloud" id="getCloud">
+                <span class="btn-icon">
+                <svg class="getCloud-icon" viewBox="0 0 24 24" ><path d="M0 0h24v24H0z" fill="none"></path><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"></path></svg>
+                </span>
+                <span class="btn-text">从云端获取</span>
+                
+                </p>
+            </div>
+        </div>
+        <div align="center">
+        <input type="text" class="inputUrl"  id="cloud-book" placeholder="url:">
+        </div>
+    </nav>
+</header>
+
+<main>
+    
+    <div class="book-list">
+    </div>
+</main>
+
+
+<script type="text/javascript" src="../js/book.js"></script>
+
+<script type="text/javascript" src="../js/index.js"></script>
+<script type="text/javascript" src="../others/epub.min.js"></script>
+<script type="text/javascript" src="../js/md5.js"></script>
+</body>
+
+
+</html>

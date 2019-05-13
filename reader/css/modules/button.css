@@ -1,0 +1,81 @@
+/* button */
+
+.right-button{
+    float:right;
+}
+
+.button{
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    padding: 0 20px 0 36px;
+    margin-left: 20px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.btn-icon{
+    position: absolute;
+    left: 10px;
+    top: 4px;
+    width: 20px;
+    height: 20px;
+}
+
+.btn-icon svg{
+    display: block !important;
+    width: 20px ;
+    height: 20px ;
+    color: #fff ;
+}
+
+.getLocal-icon{
+    display: inline-block;
+    color: rgba(0, 0, 0, 0.87);
+    fill: currentcolor;
+    height: 24px;
+    width: 24px;
+}
+
+.getLocal{
+    background-color: #ff6525;
+}
+
+.btn-text{
+    display: inline-block;
+    vertical-align: top;
+    font-size: 14px;
+    color: #fff;
+    line-height: 28px;
+}
+
+.getCloud-icon{
+    display: inline-block;
+    color: rgba(0, 0, 0, 0.87);
+    fill: currentcolor;
+    height: 24px;
+    width: 24px;
+}
+
+.getCloud{
+    background-color: #f94;
+}
+
+.inputFile{
+    display: none;
+}
+
+#cloud-book{
+    display: none;
+    width: 640px;
+    height:48px;
+    padding: 9px 7px;
+    font: 16px arial;
+    border: 1px solid #b8b8b8;
+    border-bottom: 1px solid #ccc;
+    border-radius: 15px;
+    vertical-align: top;
+    outline: none;
+    box-shadow: none;
+
+}
