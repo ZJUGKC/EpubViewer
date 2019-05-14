@@ -14,10 +14,10 @@ The third-party software packages are listed as follows:
 
 	https://code.jquery.com/
 
-	https://code.jquery.com/jquery-2.2.4.min.js
+	https://code.jquery.com/jquery-3.4.1.min.js
 
 * jszip
 
 	https://www.bootcdn.cn/jszip/
 
-	https://cdn.bootcss.com/jszip/3.1.5/jszip.min.js
+	https://cdn.bootcss.com/jszip/3.2.0/jszip.min.js
