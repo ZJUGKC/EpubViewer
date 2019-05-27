@@ -21,6 +21,6 @@
     "permissions": [
         "tabs"
     ],
-    "content_security_policy": "script-src 'self' https://cdnjs.cloudflare.com 'unsafe-inline' 'unsafe-eval' ; object-src 'self'"
+    "content_security_policy": "script-src 'self' https://cdnjs.cloudflare.com  'unsafe-eval' ; object-src 'self'"
 
 }
