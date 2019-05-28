@@ -115,7 +115,8 @@ document.getElementsByClassName('book-list')[0]
         if (index>=0) {
             var book = target.parentNode.parentNode.parentNode.parentNode;
             localStorage.setItem('key', book.getAttribute('data-key')); 
-            location.href = 'reader.html';
+            //location.href = 'reader.html';
+            window.open('reader.html');
         }
     });
 
