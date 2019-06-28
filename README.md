@@ -1,6 +1,6 @@
 # EpubViewer
 
-A tool for epub file.
+A tool for viewing epub file.
 
 ## Third-party software
 
@@ -26,8 +26,8 @@ The third-party software packages are listed as follows:
 
 ## Usage
 
-Compress the folder `reader` to a zip file,
-which can be loaded into `Chrome` or `FireFox` as a plug-in file.
+Compress the folder `EpubReader` to a zip file,
+which can be loaded into `Chrome` or `FireFox` as an extension file.
 
 ## FireFox
 
