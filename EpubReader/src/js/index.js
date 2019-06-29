@@ -42,10 +42,6 @@ document.getElementById('add-book')
             reader.readAsArrayBuffer(firstFile);
 
             reader.onload = function (e) {
-				//ePub object
-                var book = ePub({
-                    bookPath: e.target.result
-                });
 
                 var md5 = rstr2hex(binl2rstr(binl_md5(name, 16)));
                 bookInfo = new Book(md5, name, e.target.result);

@@ -468,6 +468,7 @@ EPUBJS.reader.TocController = function(toc) {
 
 	rendition.on('renderered', chapterChange);
 
+/*
 	//MATH
 	rendition.hooks.content.register(function (content) {
 		let section = book.section(content.sectionIndex);
@@ -477,6 +478,7 @@ EPUBJS.reader.TocController = function(toc) {
 			return content.addScript('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML');
 		}
 	});
+*/
 
 	var tocitems = generateTocItems(toc);
 
