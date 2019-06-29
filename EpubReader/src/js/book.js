@@ -1,3 +1,13 @@
+/*
+** Xin YUAN, 2019, BSD (2)
+*/
+
+/*
+Author: Zhang Xingyu
+
+Book Shelf
+*/
+
 (function (log, win) {
     var bookDB = win.bookDB = {};
     var indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
@@ -71,7 +81,7 @@
         req.onerror = error ;
     };
 
-    //版本不一致时
+    //while two versions are not the same
     request.onupgradeneeded = function (event) {
         thisdb = request.result;
          if(!thisdb.objectStoreNames.contains("books")) {
@@ -81,6 +91,5 @@
             thisdb.close();
         }
     };
-   
 
 }(window.console.log, window));

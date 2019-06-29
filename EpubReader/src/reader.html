@@ -1,56 +1,50 @@
 <!DOCTYPE html>
 <html class="no-js">
-    <head>
-        
-        <meta charset="utf-8">
-        <meta http-equiv="Access-Control-Allow-Origin" content="*">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, user-scalable=no">
-        <meta name="apple-mobile-web-app-capable" content="yes">
 
-        <link rel="stylesheet" href="../css/normalize.css">
-        <link rel="stylesheet" href="../css/main.css">
-        <link rel="stylesheet" href="../css/popup.css">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
 
-        <script src="../others/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/popup.css">
 
-        <script src="../others/zip.min.js"></script>
-        <script type="text/javascript" src="../js/book.js"></script>
+    <script src="../others/jquery.min.js"></script>
+    <script src="../others/zip.min.js"></script>
+    <script src="../others/epub.min.js"></script>
+    <script type="text/javascript" src="js/book.js"></script>
+    <script src="js/reader.js"></script>
 
-       
+</head>
 
-        <script src="../others/epub.min.js"></script>
+<body>
 
-        <script src="../js/reader.js"></script>
+    <div id="sidebar">
 
-
-    </head>
-    <body>
-      <div id="sidebar">
         <div id="panels">
-   
-          <a id="show-Toc" class="show_view icon-list-1 active" data-view="Toc">TOC</a>
-
+            <a id="show-Toc" class="show_view icon-list-1 active" data-view="Toc">TOC</a>
         </div>
         <div id="tocView" class="view">
         </div>
  
- 
-      </div>
-      <div id="main">
+    </div>
+
+    <div id="main">
 
         <div id="titlebar">
-          <div id="opener">
-            <a id="slider" class="icon-menu">Menu</a>
-          </div>
-          <div id="metainfo">
-            <span id="book-title"></span>
-            <span id="title-seperator">&nbsp;&nbsp;–&nbsp;&nbsp;</span>
-            <span id="chapter-title"></span>
-          </div>
-   
+            <div id="opener">
+                <a id="slider" class="icon-menu">Menu</a>
+            </div>
+            <div id="metainfo">
+                <span id="book-title"></span>
+                <span id="title-seperator">&nbsp;&nbsp;–&nbsp;&nbsp;</span>
+                <span id="chapter-title"></span>
+            </div>
         </div>
 
         <div id="divider"></div>
@@ -58,8 +52,10 @@
         <div id="viewer"></div>
         <div id="next" class="arrow">›</div>
 
-      </div>
-      
-      <div class="overlay"></div>
-    </body>
+    </div>
+
+    <div class="overlay"></div>
+
+</body>
+
 </html>

@@ -7,20 +7,20 @@
   "description": "epub reader",
 
   "icons": {
-    "48": "img/favicon.ico"
+    "48": "src/img/favicon.ico"
   },
-   "browser_action": {
-        "default_icon": {
-            "30": "img/favicon.ico"
-        },
-        "default_title": "EpubReader"
+  "browser_action": {
+    "default_icon": {
+      "30": "src/img/favicon.ico"
     },
+    "default_title": "EpubReader"
+  },
   "background": {
-        "scripts": ["start.js"]
-    },
-    "permissions": [
-        "tabs"
-    ],
-    "content_security_policy": "script-src 'self' https://cdnjs.cloudflare.com  'unsafe-eval' ; object-src 'self'"
+    "scripts": ["start.js"]
+  },
+  "permissions": [
+    "tabs"
+  ],
+  "content_security_policy": "script-src 'self' https://cdnjs.cloudflare.com  'unsafe-eval' ; object-src 'self'"
 
 }

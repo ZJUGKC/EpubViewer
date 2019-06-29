@@ -1,25 +1,30 @@
-var hexcase = 0;
+/*
+** Xin YUAN, 2019, BSD (2)
+*/
 
+/*
+Author: Zhang Xingyu
+
+MD5 Algorithm
+*/
+
+var hexcase = 0;
 
 function hex_md5(a) {
     return rstr2hex(rstr_md5(str2rstr_utf8(a)))
 }
 
-
 function hex_hmac_md5(a, b) {
     return rstr2hex(rstr_hmac_md5(str2rstr_utf8(a), str2rstr_utf8(b)))
 }
-
 
 function md5_vm_test() {
     return hex_md5("abc").toLowerCase() == "900150983cd24fb0d6963f7d28e17f72"
 }
 
-
 function rstr_md5(a) {
     return binl2rstr(binl_md5(rstr2binl(a), a.length * 8))
 }
-
 
 function rstr_hmac_md5(c, f) {
     var e = rstr2binl(c);
@@ -36,7 +41,6 @@ function rstr_hmac_md5(c, f) {
     return binl2rstr(binl_md5(d.concat(g), 512 + 128))
 }
 
-
 function rstr2hex(c) {
     try {
         hexcase
@@ -52,7 +56,6 @@ function rstr2hex(c) {
     }
     return b
 }
-
 
 function str2rstr_utf8(c) {
     var b = "";
@@ -84,7 +87,6 @@ function str2rstr_utf8(c) {
     return b
 }
 
-
 function rstr2binl(b) {
     var a = Array(b.length >> 2);
     for (var c = 0; c < a.length; c++) {
@@ -96,7 +98,6 @@ function rstr2binl(b) {
     return a
 }
 
-
 function binl2rstr(b) {
     var a = "";
     for (var c = 0; c < b.length * 32; c += 8) {
@@ -104,7 +105,6 @@ function binl2rstr(b) {
     }
     return a
 }
-
 
 function binl_md5(p, k) {
     p[k >> 5] |= 128 << ((k) % 32);
@@ -190,38 +190,31 @@ function binl_md5(p, k) {
     return Array(o, n, m, l)
 }
 
-
 function md5_cmn(h, e, d, c, g, f) {
     return safe_add(bit_rol(safe_add(safe_add(e, h), safe_add(c, f)), g), d)
 }
-
 
 function md5_ff(g, f, k, j, e, i, h) {
     return md5_cmn((f & k) | ((~f) & j), g, f, e, i, h)
 }
 
-
 function md5_gg(g, f, k, j, e, i, h) {
     return md5_cmn((f & j) | (k & (~j)), g, f, e, i, h)
 }
-
 
 function md5_hh(g, f, k, j, e, i, h) {
     return md5_cmn(f ^ k ^ j, g, f, e, i, h)
 }
 
-
 function md5_ii(g, f, k, j, e, i, h) {
     return md5_cmn(k ^ (f | (~j)), g, f, e, i, h)
 }
-
 
 function safe_add(a, d) {
     var c = (a & 65535) + (d & 65535);
     var b = (a >> 16) + (d >> 16) + (c >> 16);
     return (b << 16) | (c & 65535)
 }
-
 
 function bit_rol(a, b) {
     return (a << b) | (a >>> (32 - b))

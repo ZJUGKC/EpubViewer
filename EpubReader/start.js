@@ -1,3 +1,11 @@
+/*
+** Xin YUAN, 2019, BSD (2)
+*/
+
+/*
+Author: Zhang Xingyu
+*/
+
 var isFirefox = navigator.userAgent.indexOf('Firefox') !== -1;
 
 // for Firefox
