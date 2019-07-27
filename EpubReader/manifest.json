@@ -13,7 +13,7 @@
     "default_icon": {
       "30": "src/img/favicon.ico"
     },
-    "default_title": "EpubReader"
+    "default_title": "Epub reader"
   },
   "background": {
     "scripts": ["start.js"]
