@@ -14,8 +14,7 @@
 }
 
 .clear:before,
-.clear:after
-{
+.clear:after {
     content: '';
     display: table;
     clear: both;

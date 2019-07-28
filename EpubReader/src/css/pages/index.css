@@ -23,23 +23,26 @@ main {
 .book-shelf-container .shelf-header {
     height: 50px;
     background-color: #fff;
-    box-shadow: 0 2px 3px rgba(0,0,0,.1);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, .1);
     position: relative;
     z-index: 2;
 }
-.title-container{
+
+.title-container {
     padding-top: 15px;
 }
-.title{
+
+.title {
     color: #1FB2EA;
-    font-size:24px;
+    font-size: 24px;
     font-weight: bold;
 }
 
 @keyframes rotate {
-    to { transform: rotate(360deg); }
+    to {
+        transform: rotate(360deg);
+    }
 }
-
 
 
 .book-list {
@@ -91,7 +94,7 @@ main {
 
     width: 150px;
     height: 70px;
-    
+
     outline: 2px solid #000;
     outline-offset: 6px;
 }
@@ -158,25 +161,41 @@ main {
 }
 
 
-.icon-delete{
+.icon-delete {
     color: #a9a9a9;
     margin: 1px;
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
-    display: inline-block; 
-    color: #a9a9a9;
-    fill: currentcolor; 
-    height: 24px; 
-    width: 24px; 
+    display: inline-block;
+    fill: currentcolor;
+    height: 24px;
+    width: 24px;
     transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
 }
 
-.open-book{
+.open-book {
     width: 200px;
     height: 200px;
 }
 
 .background {
     background-image: url(../../img/cover.png);
+}
+
+#sidebar {
+    background: #6b6b6b;
+    position: absolute;
+    /* left: -260px; */
+    /* -webkit-transform: translate(-260px, 0);
+    -moz-transform: translate(-260px, 0); */
+    top: 0;
+    min-width: 300px;
+    width: 25%;
+    height: 100%;
+    -webkit-transition: -webkit-transform .5s;
+    -moz-transition: -moz-transform .5s;
+    -ms-transition: -moz-transform .5s;
+
+    overflow: hidden;
 }
