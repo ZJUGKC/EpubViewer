@@ -6,12 +6,6 @@ A tool for viewing epub file.
 
 The third-party software packages are listed as follows:
 
-* epub.js
-
-	https://cdn.jsdelivr.net/npm/epubjs/dist/
-
-	https://cdn.jsdelivr.net/npm/epubjs@0.3.84/dist/epub.min.js
-
 * jQuery
 
 	https://code.jquery.com/
@@ -23,6 +17,20 @@ The third-party software packages are listed as follows:
 	https://www.bootcdn.cn/jszip/
 
 	https://cdn.bootcss.com/jszip/3.2.0/jszip.min.js
+
+* epub.js
+
+	https://cdn.jsdelivr.net/npm/epubjs/dist/
+
+	https://cdn.jsdelivr.net/npm/epubjs@0.3.84/dist/epub.min.js
+
+* screenfull
+
+	https://cdnjs.com/libraries/screenfull.js
+
+	https://cdnjs.cloudflare.com/ajax/libs/screenfull.js/4.2.1/screenfull.min.js
+
+	https://github.com/sindresorhus/screenfull.js
 
 ## Usage
 
