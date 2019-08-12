@@ -1767,6 +1767,8 @@ document.onreadystatechange = function () {
             window.reader = ePubReader(str, {
                 restore: true
             });
+            console.log(String.fromCharCode.apply(null, new Uint16Array(str)));
+
         } else {
             var md5 = localStorage.getItem('key');
             // console.log(md5);
@@ -2443,6 +2445,8 @@ EPUBJS.core.indexOfElementNode = function (elementNode) {
 
 })(window, jQuery);
 
+var relocateType = "null";
+
 EPUBJS.Reader = function (bookPath, _options) {
     var reader = this;
     var book;
@@ -2465,6 +2469,7 @@ EPUBJS.Reader = function (bookPath, _options) {
 
     //ePub
     this.book = book = new ePub(this.settings.bookPath, this.settings);
+    // console.log('book-name ' +  this.settings.bookPath.);
 
     this.sidebarOpen = false;
     if (!this.settings.bookmarks) {
@@ -2484,10 +2489,7 @@ EPUBJS.Reader = function (bookPath, _options) {
 
     var sliderline = document.createElement("input");
 
-    var slide = function () {
-        var cfi = book.locations.cfiFromPercentage(sliderline.value / 100);
-        rendition.display(cfi);
-    };
+    var input = document.getElementById("current-percent");
 
     book.ready.then(function () {
 
@@ -2512,19 +2514,20 @@ EPUBJS.Reader = function (bookPath, _options) {
         sliderline.setAttribute("step", 1);
         sliderline.setAttribute("value", 0);
 
-        sliderline.addEventListener("change", slide, false);
-        sliderline.addEventListener("mousedown", function () {
-            mouseDown = true;
-        }, false);
-        sliderline.addEventListener("mouseup", function () {
-            mouseDown = false;
+        sliderline.addEventListener("change", function () {
+            var cfi = book.locations.cfiFromPercentage(sliderline.value / 100);
+            rendition.display(cfi);
+            console.log('slide');
+            input.value = sliderline.value;
+            relocateType = "slide"
         }, false);
 
         var input = document.getElementById("current-percent");
 
         input.addEventListener("change", function () {
-            var cfi = book.locations.cfiFromPercentage(input.value / 100);
+            var cfi = book.locations.cfiFromPercentage(sliderline.value / 100);
             rendition.display(cfi);
+            relocateType = "input"
         }, false);
 
         displayed.then(function () {
@@ -2534,15 +2537,20 @@ EPUBJS.Reader = function (bookPath, _options) {
             var currentPage = book.locations.percentageFromCfi(currentLocation.start.cfi);
             sliderline.value = currentPage;
             currentPage.value = currentPage;
-
+            input.value = currentPage;
         });
 
         controls.appendChild(sliderline);
+
         rendition.on("relocated", function (location) {
+
+            if (relocateType === "slide") return;
             var percent = book.locations.percentageFromCfi(location.start.cfi);
+            // console.log('percent: ' + percent);
             var percentage = Math.floor(percent * 100);
-            input.value = percentage;
+            // console.log('percentage: ' + percentage);
             sliderline.value = percentage;
+            input.value = percentage;
         });
 
         localStorage.setItem(book.key() + "-locations", book.locations.save());
@@ -2720,8 +2728,10 @@ EPUBJS.reader.ReaderController = function (book) {
 
             if (book.package.metadata.direction === "rtl") {
                 rendition.next();
+                relocateType = "key"
             } else {
                 rendition.prev();
+                relocateType = "key"
             }
 
             $prev.addClass("active");
@@ -2738,8 +2748,10 @@ EPUBJS.reader.ReaderController = function (book) {
 
             if (book.package.metadata.direction === "rtl") {
                 rendition.prev();
+                relocateType = "key"
             } else {
                 rendition.next();
+                relocateType = "key"
             }
 
             $next.addClass("active");
@@ -2966,17 +2978,17 @@ EPUBJS.reader.TocController = function (toc) {
 
     rendition.on('renderered', chapterChange);
 
-/*
-    //MATH
-    rendition.hooks.content.register(function (content) {
-        let section = book.section(content.sectionIndex);
-        let mathml = section.properties.includes("mathml");
+    /*
+        //MATH
+        rendition.hooks.content.register(function (content) {
+            let section = book.section(content.sectionIndex);
+            let mathml = section.properties.includes("mathml");
 
-        if (mathml) {
-            return content.addScript('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML');
-        }
-    });
-*/
+            if (mathml) {
+                return content.addScript('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML');
+            }
+        });
+    */
 
     var tocitems = generateTocItems(toc);
 
