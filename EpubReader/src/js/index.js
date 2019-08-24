@@ -42,9 +42,7 @@ document.getElementById('add-book')
             reader.readAsArrayBuffer(firstFile);
 
             reader.onload = function (e) {
-
-                var md5 = rstr2hex(binl2rstr(binl_md5(name, 16)));
-                bookInfo = new Book(md5, name, e.target.result);
+                bookInfo = new Book(name, name, e.target.result);
                 addBookToPage(bookInfo);
 
                 bookDB.open();
@@ -55,23 +53,22 @@ document.getElementById('add-book')
     });
 
 document.getElementById('getCloud')
-    .addEventListener('click', function(e){
+    .addEventListener('click', function (e) {
         var style = document.getElementById('cloud-book').style.display;
-        if(style == "" || style == "none"){
+        if (style === "" || style === "none") {
             document.getElementById('cloud-book').style.display = "block";
-        }
-        else{
+        } else {
             document.getElementById('cloud-book').style.display = "none";
         }
     });
 
 document.getElementById('cloud-book')
-    .addEventListener('keypress', function(e){
-        if(e.keyCode == 13){
+    .addEventListener('keypress', function (e) {
+        if (e.keyCode === 13) {
             var url = document.getElementById('cloud-book').value;
             location.href = "reader.html?book=" + url;
         }
-}, true);
+    }, true);
 
 document.getElementsByClassName('book-list')[0]
     .addEventListener('click', function (e) {
@@ -94,8 +91,7 @@ document.getElementsByClassName('book-list')[0]
                     );
                 }
             );
-        }
-        else if (index2 >= 0) {
+        } else if (index2 >= 0) {
             console.log('index2');
             var book = target.parentNode.parentNode.parentNode.parentNode.parentNode;
             console.log(book);
@@ -130,11 +126,12 @@ function addBookToPage(obj) {
     var list = document.getElementsByClassName('book-list')[0];
     var book = document.createElement('div');
 
-    var str1='<div class="book-head background"><div class="cover"><div class="cover-border"><div class="book-title">';
-    var str2='</div></div></div><div class="mask-content"><div class="mak-top clear"><svg class="icon-delete " title="delete" viewBox="0 0 24 24" ><path class="svgpath" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path></svg></div><div class="mask-bottom"><button class="open-book btn-flat"> </button></div></div><div class="mask"></div></div><div class="book-body"></div><div class="book-control"></div>';
+    var str1 = '<div class="book-head background"><div class="cover"><div class="cover-border"><div class="book-title">';
+    var str2 = '</div></div></div><div class="mask-content"><div class="mak-top clear"><svg class="icon-delete " title="delete" viewBox="0 0 24 24" ><path class="svgpath" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path></svg></div><div class="mask-bottom"><button class="open-book btn-flat"> </button></div></div><div class="mask"></div></div><div class="book-body"></div><div class="book-control"></div>';
 
     book.className = 'book';
     book.setAttribute('data-key', obj.key);
+    book.setAttribute('book-name', obj.name);
 
     book.innerHTML = str1 + obj.name + str2;
     list.appendChild(book);
