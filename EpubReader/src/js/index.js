@@ -8,6 +8,8 @@ Author: Zhang Xingyu
 Book Page
 */
 
+var books = new Set();
+
 function Book(key, name, content) {
     this.key = key;
     this.name = name;
@@ -26,7 +28,7 @@ window.onload = function () {
 };
 
 document.getElementById('getLocal')
-    .addEventListener('click', function(e){
+    .addEventListener('click', function (e) {
         document.getElementById('add-book').click();
     });
 
@@ -35,6 +37,10 @@ document.getElementById('add-book')
 
         var firstFile = e.target.files[0];
         var name = firstFile.name;
+
+        if (books.has(name)) {
+            return;
+        } else books.add(name);
 
         if (window.FileReader) {
             var reader = new FileReader();
@@ -112,10 +118,10 @@ document.getElementsByClassName('book-list')[0]
 document.getElementsByClassName('book-list')[0]
     .addEventListener('click', function (e) {
         var target = e.target;
-        var index=target.className.indexOf('open-book');
+        var index = target.className.indexOf('open-book');
         if (index >= 0) {
             var book = target.parentNode.parentNode.parentNode.parentNode;
-            localStorage.setItem('key', book.getAttribute('data-key')); 
+            localStorage.setItem('key', book.getAttribute('data-key'));
             //location.href = 'reader.html';
             window.open('reader.html');
         }
