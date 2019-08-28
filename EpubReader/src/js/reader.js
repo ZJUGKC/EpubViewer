@@ -2476,20 +2476,20 @@ EPUBJS.Reader = function (bookPath, _options) {
         this.settings.bookmarks = [];
     }
 
+    var input = document.getElementById("current-percent");
+
     var rendition = book.renderTo("viewer", {
         width: "100%",
         height: "100%"
     });
+
+    var sliderline = document.createElement("input");
 
     this.rendition = rendition;
 
     this.displayed = displayed = rendition.display();
 
     var controls = document.getElementById("controls");
-
-    var sliderline = document.createElement("input");
-
-    var input = document.getElementById("current-percent");
 
     book.ready.then(function () {
 
@@ -2516,21 +2516,25 @@ EPUBJS.Reader = function (bookPath, _options) {
 
         sliderline.addEventListener("change", function () {
             var cfi = book.locations.cfiFromPercentage(sliderline.value / 100);
-            rendition.display(cfi);
-            console.log('slide');
+            var result = rendition.display(cfi);
+            console.log('slider clicked');
+            console.log("cfi: " + cfi);
+            // console.log("result: " +);
             input.value = sliderline.value;
-            relocateType = "slide"
+            relocateType = "slide";
         }, false);
 
-        var input = document.getElementById("current-percent");
-
         input.addEventListener("change", function () {
+            console.log("slider input changed");
             var cfi = book.locations.cfiFromPercentage(sliderline.value / 100);
+            console.log("cfi" + cfi);
             rendition.display(cfi);
-            relocateType = "input"
+            relocateType = "input";
+            console.log("bbbbb");
         }, false);
 
         displayed.then(function () {
+            console.log("displayed");
             // Get the current CFI
             var currentLocation = rendition.currentLocation();
             // Get the Percentage (or location) from that CFI
@@ -2543,8 +2547,9 @@ EPUBJS.Reader = function (bookPath, _options) {
         controls.appendChild(sliderline);
 
         rendition.on("relocated", function (location) {
-
+            console.log("relocated");
             if (relocateType === "slide") return;
+            console.log("setting the slider & input");
             var percent = book.locations.percentageFromCfi(location.start.cfi);
             // console.log('percent: ' + percent);
             var percentage = Math.floor(percent * 100);
@@ -2736,6 +2741,7 @@ EPUBJS.reader.ReaderController = function (book) {
 
             $prev.addClass("active");
 
+            console.log("right key pressed");
             keylock = true;
             setTimeout(function () {
                 keylock = false;
@@ -2756,6 +2762,7 @@ EPUBJS.reader.ReaderController = function (book) {
 
             $next.addClass("active");
 
+            console.log("left key pressed");
             keylock = true;
             setTimeout(function () {
                 keylock = false;
@@ -2773,6 +2780,7 @@ EPUBJS.reader.ReaderController = function (book) {
         if (book.package.metadata.direction === "rtl") {
             rendition.prev();
         } else {
+            console.log("right arrow clicked");
             rendition.next();
         }
 
@@ -2784,6 +2792,7 @@ EPUBJS.reader.ReaderController = function (book) {
         if (book.package.metadata.direction === "rtl") {
             rendition.next();
         } else {
+            console.log("left arrow clicked");
             rendition.prev();
         }
 
