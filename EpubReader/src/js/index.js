@@ -8,7 +8,8 @@ Author: Zhang Xingyu
 Book Page
 */
 
-var books = new Set();
+//for book names
+var book_set = new Set();
 
 function Book(key, name, content) {
     this.key = key;
@@ -38,9 +39,9 @@ document.getElementById('add-book')
         var firstFile = e.target.files[0];
         var name = firstFile.name;
 
-        if (books.has(name)) {
+        if (book_set.has(name)) {
             return;
-        } else books.add(name);
+        } else book_set.add(name);
 
         if (window.FileReader) {
             var reader = new FileReader();
