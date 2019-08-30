@@ -96,6 +96,7 @@ document.getElementsByClassName('book-list')[0]
                             parent.removeChild(book);
                         }
                     );
+                    book_set.delete(md5);
                 }
             );
         } else if (index2 >= 0) {
@@ -111,6 +112,7 @@ document.getElementsByClassName('book-list')[0]
                             parent.removeChild(book);
                         }
                     );
+                    book_set.delete(md5);
                 }
             );
         }
