@@ -2729,14 +2729,14 @@ EPUBJS.reader.ReaderController = function (book) {
     var keylock = false;
 
     var arrowKeys = function (e) {
+        relocateType = "key";
+
         if (e.keyCode === 37) {
 
             if (book.package.metadata.direction === "rtl") {
                 rendition.next();
-                relocateType = "key"
             } else {
                 rendition.prev();
-                relocateType = "key"
             }
 
             $prev.addClass("active");
@@ -2754,10 +2754,8 @@ EPUBJS.reader.ReaderController = function (book) {
 
             if (book.package.metadata.direction === "rtl") {
                 rendition.prev();
-                relocateType = "key"
             } else {
                 rendition.next();
-                relocateType = "key"
             }
 
             $next.addClass("active");
@@ -2776,6 +2774,7 @@ EPUBJS.reader.ReaderController = function (book) {
     document.addEventListener('keydown', arrowKeys, false);
 
     $next.on("click", function (e) {
+        relocateType = "arrow";
 
         if (book.package.metadata.direction === "rtl") {
             rendition.prev();
@@ -2788,7 +2787,7 @@ EPUBJS.reader.ReaderController = function (book) {
     });
 
     $prev.on("click", function (e) {
-
+        relocateType = "arrow";
         if (book.package.metadata.direction === "rtl") {
             rendition.next();
         } else {
