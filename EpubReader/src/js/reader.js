@@ -2476,20 +2476,33 @@ EPUBJS.Reader = function (bookPath, _options) {
         this.settings.bookmarks = [];
     }
 
+    var sliderline = document.createElement("input");
+    var controls = document.getElementById("controls");controls.appendChild(sliderline);
+    sliderline.setAttribute("type", "range");
+    sliderline.setAttribute("min", 0);
+    sliderline.setAttribute("max", 100);
+    sliderline.setAttribute("step", 1);
+    sliderline.setAttribute("value", 0);
+    sliderline.addEventListener("change", function () {
+        var cfi = book.locations.cfiFromPercentage(sliderline.value / 100);
+        rendition.display(cfi);
+        console.log("cfi: " + cfi);
+        // console.log("result: " +);
+        input.value = sliderline.value;
+        relocateType = "slide";
+    }, false);
+
     var input = document.getElementById("current-percent");
+    controls.style.display = "block";
 
     var rendition = book.renderTo("viewer", {
         width: "100%",
         height: "100%"
     });
 
-    var sliderline = document.createElement("input");
-
     this.rendition = rendition;
 
     this.displayed = displayed = rendition.display();
-
-    var controls = document.getElementById("controls");
 
     book.ready.then(function () {
 
@@ -2506,23 +2519,6 @@ EPUBJS.Reader = function (bookPath, _options) {
             return book.locations.generate(1600);
         }
     }).then(function () {
-
-        controls.style.display = "block";
-        sliderline.setAttribute("type", "range");
-        sliderline.setAttribute("min", 0);
-        sliderline.setAttribute("max", 100);
-        sliderline.setAttribute("step", 1);
-        sliderline.setAttribute("value", 0);
-
-        sliderline.addEventListener("change", function () {
-            var cfi = book.locations.cfiFromPercentage(sliderline.value / 100);
-            var result = rendition.display(cfi);
-            console.log('slider clicked');
-            console.log("cfi: " + cfi);
-            // console.log("result: " +);
-            input.value = sliderline.value;
-            relocateType = "slide";
-        }, false);
 
         input.addEventListener("change", function () {
             console.log("slider input changed");
@@ -2543,8 +2539,6 @@ EPUBJS.Reader = function (bookPath, _options) {
             currentPage.value = currentPage;
             input.value = currentPage;
         });
-
-        controls.appendChild(sliderline);
 
         rendition.on("relocated", function (location) {
             console.log("relocated");
