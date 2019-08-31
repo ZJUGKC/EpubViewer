@@ -134,7 +134,6 @@ body {
     width: 400px;
     margin-left: -200px;
     text-align: center;
-    display: none;
 }
 
 #controls > input[type=range] {
