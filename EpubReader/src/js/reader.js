@@ -6,6 +6,8 @@
 Author: Zhang Xingyu
 
 Reader functions
+
+Reviser: Qian Chengliang
 */
 
 (function (global, factory) {
@@ -2476,8 +2478,11 @@ EPUBJS.Reader = function (bookPath, _options) {
         this.settings.bookmarks = [];
     }
 
+	//slider
+    var input_page = document.getElementById("current-percent");
     var sliderline = document.createElement("input");
-    var controls = document.getElementById("controls");controls.appendChild(sliderline);
+    var controls = document.getElementById("controls");
+    controls.appendChild(sliderline);
     sliderline.setAttribute("type", "range");
     sliderline.setAttribute("min", 0);
     sliderline.setAttribute("max", 100);
@@ -2488,11 +2493,10 @@ EPUBJS.Reader = function (bookPath, _options) {
         rendition.display(cfi);
         console.log("cfi: " + cfi);
         // console.log("result: " +);
-        input.value = sliderline.value;
+        input_page.value = sliderline.value;
         relocateType = "slide";
     }, false);
 
-    var input = document.getElementById("current-percent");
     controls.style.display = "block";
 
     var rendition = book.renderTo("viewer", {
@@ -2520,9 +2524,9 @@ EPUBJS.Reader = function (bookPath, _options) {
         }
     }).then(function () {
 
-        input.addEventListener("change", function () {
+        input_page.addEventListener("change", function () {
             console.log("slider input changed");
-            var cfi = book.locations.cfiFromPercentage(sliderline.value / 100);
+            var cfi = book.locations.cfiFromPercentage(input_page.value / 100);
             console.log("cfi" + cfi);
             rendition.display(cfi);
             relocateType = "input";
@@ -2536,8 +2540,7 @@ EPUBJS.Reader = function (bookPath, _options) {
             // Get the Percentage (or location) from that CFI
             var currentPage = book.locations.percentageFromCfi(currentLocation.start.cfi);
             sliderline.value = currentPage;
-            currentPage.value = currentPage;
-            input.value = currentPage;
+            input_page.value = currentPage;
         });
 
         rendition.on("relocated", function (location) {
@@ -2549,7 +2552,7 @@ EPUBJS.Reader = function (bookPath, _options) {
             var percentage = Math.floor(percent * 100);
             // console.log('percentage: ' + percentage);
             sliderline.value = percentage;
-            input.value = percentage;
+            input_page.value = percentage;
         });
 
         localStorage.setItem(book.key() + "-locations", book.locations.save());
