@@ -16,13 +16,13 @@ The third-party software packages are listed as follows:
 
 	https://www.bootcdn.cn/jszip/
 
-	https://cdn.bootcss.com/jszip/3.2.0/jszip.min.js
+	https://cdn.bootcss.com/jszip/3.2.2/jszip.min.js
 
 * epub.js
 
 	https://cdn.jsdelivr.net/npm/epubjs/dist/
 
-	https://cdn.jsdelivr.net/npm/epubjs@0.3.84/dist/epub.min.js
+	https://cdn.jsdelivr.net/npm/epubjs@0.3.85/dist/epub.min.js
 
 * screenfull
 
