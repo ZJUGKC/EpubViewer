@@ -2491,8 +2491,7 @@ EPUBJS.Reader = function (bookPath, _options) {
     sliderline.addEventListener("change", function () {
         var cfi = book.locations.cfiFromPercentage(sliderline.value / 100);
         rendition.display(cfi);
-        console.log("cfi: " + cfi);
-        // console.log("result: " +);
+        console.log("sliderline: " + sliderline.value + " cfi: " + cfi);
         input_page.value = sliderline.value;
         relocateType = "slide";
     }, false);
@@ -2525,12 +2524,10 @@ EPUBJS.Reader = function (bookPath, _options) {
     }).then(function () {
 
         input_page.addEventListener("change", function () {
-            console.log("slider input changed");
             var cfi = book.locations.cfiFromPercentage(input_page.value / 100);
-            console.log("cfi" + cfi);
+            console.log("input: " + input_page.value + " cfi: " + cfi);
             rendition.display(cfi);
             relocateType = "input";
-            console.log("bbbbb");
         }, false);
 
         displayed.then(function () {
@@ -2546,11 +2543,9 @@ EPUBJS.Reader = function (bookPath, _options) {
         rendition.on("relocated", function (location) {
             console.log("relocated");
             if (relocateType === "slide") return;
-            console.log("setting the slider & input");
             var percent = book.locations.percentageFromCfi(location.start.cfi);
-            // console.log('percent: ' + percent);
             var percentage = Math.floor(percent * 100);
-            // console.log('percentage: ' + percentage);
+            console.log('percentage: ' + percentage + ' total: ' + book.locations._locations.length);
             sliderline.value = percentage;
             input_page.value = percentage;
         });
@@ -2773,10 +2768,10 @@ EPUBJS.reader.ReaderController = function (book) {
     $next.on("click", function (e) {
         relocateType = "arrow";
 
+        console.log("right arrow clicked");
         if (book.package.metadata.direction === "rtl") {
             rendition.prev();
         } else {
-            console.log("right arrow clicked");
             rendition.next();
         }
 
@@ -2785,10 +2780,11 @@ EPUBJS.reader.ReaderController = function (book) {
 
     $prev.on("click", function (e) {
         relocateType = "arrow";
+
+        console.log("left arrow clicked");
         if (book.package.metadata.direction === "rtl") {
             rendition.next();
         } else {
-            console.log("left arrow clicked");
             rendition.prev();
         }
 

@@ -41,3 +41,8 @@ which can be loaded into `Chrome` or `FireFox` as an extension file.
 
 Open a url `about:config`, then change the value of variable `security.csp.enable`
 from `true` to `false`.
+
+## Problems
+
+* The API `cfiFromPercentage` may not work properly for inputting percentage
+or clicking the slider bar.
