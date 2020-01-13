@@ -28,7 +28,7 @@ The third-party software packages are listed as follows:
 
 	https://cdnjs.com/libraries/screenfull.js
 
-	https://cdnjs.cloudflare.com/ajax/libs/screenfull.js/4.2.1/screenfull.min.js
+	https://cdnjs.cloudflare.com/ajax/libs/screenfull.js/5.0.0/screenfull.min.js
 
 	https://github.com/sindresorhus/screenfull.js
 
