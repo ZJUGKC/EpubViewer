@@ -2487,7 +2487,12 @@ EPUBJS.Reader = function (bookPath, _options) {
     sliderline.setAttribute("min", 0);
     sliderline.setAttribute("max", 100);
     sliderline.setAttribute("step", 1);
-    sliderline.setAttribute("value", 0);
+    if (book.package.metadata.direction === "rtl") {
+        sliderline.setAttribute("value", 100);
+    }
+	else {
+        sliderline.setAttribute("value", 0);
+    }
     sliderline.addEventListener("change", function () {
         var percentage = 0;
         if (book.package.metadata.direction === "rtl") {
