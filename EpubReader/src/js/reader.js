@@ -2487,12 +2487,7 @@ EPUBJS.Reader = function (bookPath, _options) {
     sliderline.setAttribute("min", 0);
     sliderline.setAttribute("max", 100);
     sliderline.setAttribute("step", 1);
-    if (book.package.metadata.direction === "rtl") {
-        sliderline.setAttribute("value", 100);
-    }
-	else {
-        sliderline.setAttribute("value", 0);
-    }
+    sliderline.setAttribute("value", 0);
     sliderline.addEventListener("change", function () {
         var percentage = 0;
         if (book.package.metadata.direction === "rtl") {
@@ -2547,7 +2542,11 @@ EPUBJS.Reader = function (bookPath, _options) {
             var currentLocation = rendition.currentLocation();
             // Get the Percentage (or location) from that CFI
             var currentPage = book.locations.percentageFromCfi(currentLocation.start.cfi);
-            sliderline.value = currentPage;
+            if (book.package.metadata.direction === "rtl") {
+                sliderline.value = 100 - currentPage;
+            } else {
+                sliderline.value = currentPage;
+            }
             input_page.value = currentPage;
         });
 
