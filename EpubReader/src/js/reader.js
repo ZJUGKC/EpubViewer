@@ -2489,10 +2489,16 @@ EPUBJS.Reader = function (bookPath, _options) {
     sliderline.setAttribute("step", 1);
     sliderline.setAttribute("value", 0);
     sliderline.addEventListener("change", function () {
-        var cfi = book.locations.cfiFromPercentage(sliderline.value / 100);
+        var percentage = 0;
+        if (book.package.metadata.direction === "rtl") {
+            percentage = 100 - sliderline.value;
+        } else {
+            percentage = sliderline.value;
+        }
+        var cfi = book.locations.cfiFromPercentage(percentage / 100);
         rendition.display(cfi);
-        console.log("sliderline: " + sliderline.value + " cfi: " + cfi);
-        input_page.value = sliderline.value;
+        console.log("sliderline: " + percentage + " cfi: " + cfi);
+        input_page.value = percentage;
         relocateType = "slide";
     }, false);
 
