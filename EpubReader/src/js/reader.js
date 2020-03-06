@@ -2546,7 +2546,11 @@ EPUBJS.Reader = function (bookPath, _options) {
             var percent = book.locations.percentageFromCfi(location.start.cfi);
             var percentage = Math.floor(percent * 100);
             console.log('percentage: ' + percentage + ' total: ' + book.locations._locations.length);
-            sliderline.value = percentage;
+            if (book.package.metadata.direction === "rtl") {
+                sliderline.value = 100 - percentage;
+            } else {
+                sliderline.value = percentage;
+            }
             input_page.value = percentage;
         });
 
