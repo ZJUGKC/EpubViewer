@@ -2478,7 +2478,7 @@ EPUBJS.Reader = function (bookPath, _options) {
         this.settings.bookmarks = [];
     }
 
-	//slider
+    //slider
     var input_page = document.getElementById("current-percent");
     var sliderline = document.createElement("input");
     var controls = document.getElementById("controls");
