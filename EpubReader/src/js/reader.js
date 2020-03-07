@@ -2480,29 +2480,6 @@ EPUBJS.Reader = function (bookPath, _options) {
 
     //slider
     var input_page = document.getElementById("current-percent");
-    var sliderline = document.createElement("input");
-    var controls = document.getElementById("controls");
-    controls.appendChild(sliderline);
-    sliderline.setAttribute("type", "range");
-    sliderline.setAttribute("min", 0);
-    sliderline.setAttribute("max", 100);
-    sliderline.setAttribute("step", 1);
-    sliderline.setAttribute("value", 0);
-    sliderline.addEventListener("change", function () {
-        var percentage = 0;
-        if (book.package.metadata.direction === "rtl") {
-            percentage = 100 - sliderline.value;
-        } else {
-            percentage = sliderline.value;
-        }
-        var cfi = book.locations.cfiFromPercentage(percentage / 100);
-        rendition.display(cfi);
-        console.log("sliderline: " + percentage + " cfi: " + cfi);
-        input_page.value = percentage;
-        relocateType = "slide";
-    }, false);
-
-    controls.style.display = "block";
 
     var rendition = book.renderTo("viewer", {
         width: "100%",
@@ -2536,18 +2513,40 @@ EPUBJS.Reader = function (bookPath, _options) {
             relocateType = "input";
         }, false);
 
+        var sliderline;
+        var controls;
+
         displayed.then(function () {
             console.log("displayed");
-            // Get the current CFI
-            var currentLocation = rendition.currentLocation();
-            // Get the Percentage (or location) from that CFI
-            var currentPage = book.locations.percentageFromCfi(currentLocation.start.cfi);
+            sliderline = document.createElement("input");
+            controls = document.getElementById("controls");
+            controls.appendChild(sliderline);
+            sliderline.setAttribute("type", "range");
+            sliderline.setAttribute("min", 0);
+            sliderline.setAttribute("max", 100);
+            sliderline.setAttribute("step", 1);
+            sliderline.setAttribute("value", 0);
+            sliderline.addEventListener("change", function () {
+                var percentage = 0;
+                if (book.package.metadata.direction === "rtl") {
+                    percentage = 100 - sliderline.value;
+                } else {
+                    percentage = sliderline.value;
+                }
+                var cfi = book.locations.cfiFromPercentage(percentage / 100);
+                rendition.display(cfi);
+                console.log("sliderline: " + percentage + " cfi: " + cfi);
+                input_page.value = percentage;
+                relocateType = "slide";
+            }, false);
+
+            controls.style.display = "block";
             if (book.package.metadata.direction === "rtl") {
-                sliderline.value = 100 - currentPage;
+                sliderline.value = 100;
             } else {
-                sliderline.value = currentPage;
+                sliderline.value = 0;
             }
-            input_page.value = currentPage;
+            input_page.value = 0;
         });
 
         rendition.on("relocated", function (location) {
