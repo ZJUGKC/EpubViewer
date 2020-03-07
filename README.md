@@ -39,7 +39,8 @@ which can be loaded into `Chrome` or `FireFox` as an extension file.
 
 ## FireFox
 
-Open a url `about:config`, then change the value of variable `security.csp.enable`
+If the content of epub file cannot be displayed correctly,
+you can open a url `about:config` and change the value of variable `security.csp.enable`
 from `true` to `false`.
 
 ## Problems

@@ -2478,7 +2478,7 @@ EPUBJS.Reader = function (bookPath, _options) {
         this.settings.bookmarks = [];
     }
 
-	//slider
+    //slider
     var input_page = document.getElementById("current-percent");
     var sliderline = document.createElement("input");
     var controls = document.getElementById("controls");
@@ -2542,7 +2542,11 @@ EPUBJS.Reader = function (bookPath, _options) {
             var currentLocation = rendition.currentLocation();
             // Get the Percentage (or location) from that CFI
             var currentPage = book.locations.percentageFromCfi(currentLocation.start.cfi);
-            sliderline.value = currentPage;
+            if (book.package.metadata.direction === "rtl") {
+                sliderline.value = 100 - currentPage;
+            } else {
+                sliderline.value = currentPage;
+            }
             input_page.value = currentPage;
         });
 
