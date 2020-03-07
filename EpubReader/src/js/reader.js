@@ -2478,11 +2478,12 @@ EPUBJS.Reader = function (bookPath, _options) {
         this.settings.bookmarks = [];
     }
 
+    //controls
+    var controls = document.getElementById("controls");
+
     //slider
     var input_page = document.getElementById("current-percent");
     var sliderline = document.createElement("input");
-    var controls = document.getElementById("controls");
-    controls.appendChild(sliderline);
     sliderline.setAttribute("type", "range");
     sliderline.setAttribute("min", 0);
     sliderline.setAttribute("max", 100);
@@ -2525,6 +2526,8 @@ EPUBJS.Reader = function (bookPath, _options) {
             sliderline.value = currentPage;
         }
         input_page.value = currentPage;
+        // show slider
+        controls.appendChild(sliderline);
     });
 
     book.ready.then(function () {
