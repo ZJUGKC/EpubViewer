@@ -2512,6 +2512,20 @@ EPUBJS.Reader = function (bookPath, _options) {
     this.rendition = rendition;
 
     this.displayed = displayed = rendition.display();
+    //after displayed
+    displayed.then(function () {
+        console.log("displayed");
+        // Get the current CFI
+        var currentLocation = rendition.currentLocation();
+        // Get the Percentage (or location) from that CFI
+        var currentPage = book.locations.percentageFromCfi(currentLocation.start.cfi);
+        if (book.package.metadata.direction === "rtl") {
+            sliderline.value = 100 - currentPage;
+        } else {
+            sliderline.value = currentPage;
+        }
+        input_page.value = currentPage;
+    });
 
     book.ready.then(function () {
 
@@ -2535,20 +2549,6 @@ EPUBJS.Reader = function (bookPath, _options) {
             rendition.display(cfi);
             relocateType = "input";
         }, false);
-
-        displayed.then(function () {
-            console.log("displayed");
-            // Get the current CFI
-            var currentLocation = rendition.currentLocation();
-            // Get the Percentage (or location) from that CFI
-            var currentPage = book.locations.percentageFromCfi(currentLocation.start.cfi);
-            if (book.package.metadata.direction === "rtl") {
-                sliderline.value = 100 - currentPage;
-            } else {
-                sliderline.value = currentPage;
-            }
-            input_page.value = currentPage;
-        });
 
         rendition.on("relocated", function (location) {
             console.log("relocated");
